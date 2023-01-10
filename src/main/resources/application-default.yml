@@ -1,0 +1,71 @@
+spring:
+  config:
+    activate:
+      on-profile: default
+
+  h2:
+    console:
+      enable: true
+      path: /h2-console
+
+  datasource:
+    url: jdbc:h2:~/test
+    #url: jdbc:h2:mem:test
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  sql.init.mode: always
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        show_sql: true
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true
+
+saml2:
+  identity-provider:
+    base-path: http://localhost:8080/idp
+    entity-id: my-identity-provider-app
+    sign-metadata: true
+    sign-assertions: true
+    want-requests-signed: true
+    signing-algorithm: RSA_SHA256
+    digest-method: SHA256
+    single-logout-enabled: true
+    name-ids:
+      - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+      - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+      - urn:oasis:names:tc:SAML:2.0:attrname-format:basic
+    keys:
+      active:
+        name: active-idp-key
+        private-key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          input here your own rsa private key (check README)
+          -----END RSA PRIVATE KEY-----
+        passphrase: (check README)
+        certificate: |
+          -----BEGIN CERTIFICATE-----
+          input here your own certification (check README)
+          -----END CERTIFICATE-----
+    providers:
+      - entity-id: my-service-provider-app
+        metadata: https://signin.aws.amazon.com/static/saml-metadata.xml
+        link-text: AWS Management Console 1
+        alias: local-sp1
+
+server:
+  port: 8080
+  servlet:
+    context-path: /idp
+
+logging:
+  level:
+    root: INFO
