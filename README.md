@@ -2,7 +2,6 @@
 Test IDP Server for AWS Account SAML 2.0-based federation
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html
 
-
 ## Test Preparation
 Make your own private key, certificate and add application.yml
 
@@ -12,6 +11,3 @@ Make your own private key, certificate and add application.yml
 - certificate
   - openssl req -new -x509 -key id_rsa -out rsacert.pem
 ```
-
-## springboot-starter-idp-saml
-Backend http://localhost:8080/idp
