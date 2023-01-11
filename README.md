@@ -1,5 +1,5 @@
 ## Introduction
-Test IDP Server for AWS Account federation
+Test IDP Server for AWS Account SAML 2.0-based federation
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html
 
 
